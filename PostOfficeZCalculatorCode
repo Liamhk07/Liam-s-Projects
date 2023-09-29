@@ -1,0 +1,111 @@
+#Author: Liam Kennon
+#Date Finished: 9/27/2023
+#Description: This a Mail calculator that simply takes the size of your mail and the distance it needs to be shiiped and tells you the total cost of the shipment fee. 
+#Bugs:none
+#Chalenges: N/A
+#Sources: Google
+for i in range (0,5):
+  
+  def classify(length, height, thickness):                                                        
+    
+#length - length of postage
+#thickness - thickness of postage
+#return - classification of postage    
+#Defining the function that finds the size                                                         
+#Finds length, height, and thickness
+#Returns Size classification
+    if (3.5 <= length <= 4.25) and (3.5 <= height <= 6) and (.007 <= thickness <= .016):        
+        return "Regular Postcard"                                                                             
+    elif (4.25 <= length <= 6) and (6 <= height <= 11.5) and (.007 <= thickness <= .015):       
+        return "Large Postcard"                                                                
+    elif (3.5 <= length <= 6.125) and (5 <= height <= 11.5) and (.016 <= thickness <= .25):     
+        return "Envelope"                                                                       
+    elif (6.125 <= length <= 24) and (11 <= height <=18) and (.25 <= thickness <= .5):          
+        return "Large Envelope"                                                                 
+    elif (length + height*2 + thickness*2) <= 84:
+        return "Package"
+    elif 84 < (length + height*2 + thickness*2) <= 130:
+        return "Large Package"
+    else:
+        return "Unmailable" 
+   
+
+def zipcode(ZIP) :                                                                           
+
+#ZIP - zipcode                                                                                              
+#return - returns ZIP number/zone                                                               
+#Defining the function that finds the distance
+#Finds the starting zipcode and ending zipcode and then determines the zone
+#Returns the distance between them classified as a zone 1 through 6
+#setting ZIP equal to the integer that the user inputs for the zipcodes   
+    ZIP = int(ZIP)
+    if 1 <= ZIP <= 6999:
+      return 1 
+    elif 7000 <= ZIP <= 19999:
+      return 2
+    elif 20000 <= ZIP <= 34999:
+      return 3
+    elif 36000 <= ZIP <= 62999:
+      return 4
+    elif 63000 <= ZIP <= 84999:
+      return 5
+    elif 85000 <= ZIP <= 99999:
+      return 6 
+    else:
+       None
+           
+
+def main():
+    try:
+    #collects data for all the functions
+      
+      l = float(input("enter length"))
+      h = float(input("enter height"))
+      t = float(input("enter thickness"))
+      z1 = int(input("enter starting zip"))
+      z2 = int(input("enter ending zip"))
+    
+
+
+    #get pkg type
+      mailtype = classify(l, h, t)
+
+      zone1 = zipcode(z1)                                                                          #Setting zone1 equal to z1
+      zone2 = zipcode(z2)                                                                          #Setting zone2 equal to z2
+
+      distance = abs(zone2 - zone1)                                                                #Setting the distance equal to the absolute value of the difference of zone2 and zone1
+
+      cost = postcalc(distance, mailtype)  
+    
+                                                       #Setting the cost equal to postcalc with the distance and PostType
+
+      cost = str(round(cost, 3))
+      if cost[0] == "0":
+        cost = cost [1:]
+
+      print(cost)     
+    except:
+       print("error")                                                           #Being a very nice and friendly programmer and giving the user a break after a long day by letting him know he made an error
+    
+                                                                                #Print cost
+
+#Defining the function postcalc that finds the price
+#Uses Post size and distance to calculate the price
+#Returns the cost of the mail
+def postcalc(distance, mailtype):
+   if mailtype == "Regular Postcard":
+      priceperzone = .2 + .03*distance
+   elif mailtype == "Large Postcard":
+      priceperzone = .37 + .03*distance
+   elif mailtype == "Envelope":
+      priceperzone = .37 + .04*distance   
+   elif mailtype == "Large Envelope":
+      priceperzone = .6 + .05*distance 
+   elif mailtype == "Package":
+      priceperzone = 2.95 + .25*distance    
+   elif mailtype == "Large Package":
+      priceperzone = 3.95 + .35*distance   
+   return priceperzone
+
+if __name__=="__main__":
+    main()
