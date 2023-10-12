@@ -1,5 +1,5 @@
 #Author: Liam Kennon
-#Date Finished: 9/27/2023
+#Date Finished: 10/12/2023
 #Description: This a Mail calculator that simply takes the size of your mail and the distance it needs to be shiiped and tells you the total cost of the shipment fee. 
 #Bugs:none
 #Chalenges: N/A
@@ -56,16 +56,20 @@ def zipcode(ZIP) :
            
 
 def main():
+  count = 0
+  while count < 5:
     try:
     #collects data for all the functions
       
-      l = float(input("enter length"))
-      h = float(input("enter height"))
-      t = float(input("enter thickness"))
-      z1 = int(input("enter starting zip"))
-      z2 = int(input("enter ending zip"))
-    
+      Data = input("")
+      Data = Data.split("," ,5)
 
+       
+      l = float(Data[0])
+      h = float(Data[1])
+      t = float(Data[2])
+      z1 = int(Data[3])
+      z2 = int(Data[4])
 
     #get pkg type
       mailtype = classify(l, h, t)
@@ -77,13 +81,19 @@ def main():
 
       cost = postcalc(distance, mailtype)  
     
-                                                       #Setting the cost equal to postcalc with the distance and PostType
+                                                                                #Setting the cost equal to postcalc with the distance and PostType
 
-      cost = str(round(cost, 3))
+                                                                                #Formatting the amount of money to always have two integers to the right of the decimal if needed
+      cost = str(postcalc(distance, mailtype))                                  #Puts distance and mailtype values into the function post calc and sets that value equal to cost
+      cost = float(cost)                                                        #Turns cost into a float
+      txt = "{:.2f}"
+      cost = txt.format(cost)                                                   #If there is a 0 before the decimal, delete it
       if cost[0] == "0":
         cost = cost [1:]
+      
 
-      print(cost)     
+      print(cost)
+      count += 1     
     except:
        print("error")                                                           #Being a very nice and friendly programmer and giving the user a break after a long day by letting him know he made an error
     
