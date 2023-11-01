@@ -9,11 +9,11 @@
 
     <h2>Postage Calculator</h2>
 
-    Length: <input value="4" type="text" id="length" ><span id="lengthvalid" class="redBox"></span><br><br>             <!-- length of pkg-->
-    Height: <input value="4" type="text" id="height" ><span id="heightvalid" class="redBox"></span><br><br>
-    Thickness: <input value=".009" type="text" id="thickness" ><span id="thicknessvalid" class="redBox"></span><br><br>
-    Start Zip: <input value="02893" type="text" id="startZip" ><span id="startZipvalid" class="redBox"></span><br><br>
-    End Zip: <input value="08516" type="text" id="endZip" ><span id="endZipvalid" class="redBox"></span><br><br>
+    Length: <input value="" type="text" id="length" ><span id="lengthvalid" class="redBox"></span><br><br>             <!-- length of pkg-->
+    Height: <input value="" type="text" id="height" ><span id="heightvalid" class="redBox"></span><br><br>
+    Thickness: <input value="" type="text" id="thickness" ><span id="thicknessvalid" class="redBox"></span><br><br>
+    Start Zip: <input value="" type="text" id="startZip" ><span id="startZipvalid" class="redBox"></span><br><br>
+    End Zip: <input value="" type="text" id="endZip" ><span id="endZipvalid" class="redBox"></span><br><br>
     <button onclick="main()">Calculate</button>
 
     <p id="resultText">Result is shown here.</p>
