@@ -46,17 +46,12 @@
         console.log("40" +getsize)
       
 
-        var getcost = String(findcost(distance, getsize));
-        if (getcost[0] == "0")
-        {
-            getcost = getcost.slice(1, 4)
-        }
-        document.getElementById("resultText").textContent = "" + getcost;
-        console.log("DEBUG: " + length)
-        console.log("DEBUG: " + height)
-        console.log("DEBUG: " + thickness)
-        console.log("DEBUG: " + startZip)
-        console.log("DEBUG: " + endZip)
+        var getcost = findcost(distance, getsize)
+        let price = getcost.toFixed(2);
+        price = parseFloat(price).toFixed(2).replace(/^0+/, "");
+
+        document.getElementById("resultText").textContent = "" + price;
+      
 
        
     // Display an alert with the submitted values
@@ -211,4 +206,4 @@
 
     }
 </script>
-</html>     
+</html>    
