@@ -9,14 +9,12 @@
 
     <h2>Postage Calculator</h2>
 
-    Length: <input value="" type="text" id="length" ><span id="lengthvalid" class="redBox"></span><br><br>             <!-- length of pkg-->
-    Height: <input value="" type="text" id="height" ><span id="heightvalid" class="redBox"></span><br><br>
-    Thickness: <input value="" type="text" id="thickness" ><span id="thicknessvalid" class="redBox"></span><br><br>
-    Start Zip: <input value="" type="text" id="startZip" ><span id="startZipvalid" class="redBox"></span><br><br>
-    End Zip: <input value="" type="text" id="endZip" ><span id="endZipvalid" class="redBox"></span><br><br>
+    Length: <input value="4" type="text" id="length" ><span id="lengthvalid" class="redBox"></span><br><br>             <!-- length of pkg-->
+    Height: <input value="4" type="text" id="height" ><span id="heightvalid" class="redBox"></span><br><br>
+    Thickness: <input value=".009" type="text" id="thickness" ><span id="thicknessvalid" class="redBox"></span><br><br>
+    Start Zip: <input value="02893" type="text" id="startZip" ><span id="startZipvalid" class="redBox"></span><br><br>
+    End Zip: <input value="08516" type="text" id="endZip" ><span id="endZipvalid" class="redBox"></span><br><br>
     <button onclick="main()">Calculate</button>
-
-    <p id="resultText">Result is shown here.</p>
 </body>   
 <script>
     //Author: Liam Kennon
@@ -37,21 +35,28 @@
        var endZip = parseFloat(document.getElementById("endZip").value);
 
         var getsize = classify(length, height, thickness);
+        alert("the pkg size: "  + getsize)
 
-        var zone1 = finddistance(startZip);
-        var zone2 = finddistance(endZip);
+        var zone1 = find_distance(startZip);
+        var zone2 = find_distance(endZip);
         distance =  Math.abs(zone1- zone2);
         console.log(" the zones math is: " + distance);
 
         console.log("40" +getsize)
       
 
-        var getcost = findcost(distance, getsize)
-        let price = getcost.toFixed(2);
-        price = parseFloat(price).toFixed(2).replace(/^0+/, "");
-
-        document.getElementById("resultText").textContent = "" + price;
-      
+        var getcost = String(find_cost(distance, getsize));
+        if (getcost[0] == "0")
+        {
+            getcost = getcost.slice(1, 4)
+        }
+        let final_cost = getcost.toFixed(2)
+        alert(getcost)
+        console.log("DEBUG: " + length)
+        console.log("DEBUG: " + height)
+        console.log("DEBUG: " + thickness)
+        console.log("DEBUG: " + startZip)
+        console.log("DEBUG: " + endZip)
 
        
     // Display an alert with the submitted values
@@ -60,12 +65,12 @@
 
     function classify(length, height, thickness)                                                        
     {
-    //length - length of postage
-    //thickness - thickness of postage
-    //return - classification of postage    
-    //Defining the function that finds the size                                                         
-    //Finds length, height, and thickness
-    //Returns Size classification
+    /*length - length of postage
+    thickness - thickness of postage
+    return - classification of postage    
+    Defining the function that finds the size                                                         
+    Finds length, height, and thickness
+    Returns Size classification*/
    
         if ((length >= 3.5 && length <= 4.25) && (height >= 3.5 && height <= 6) && (thickness >= .007 && thickness <= .016)) 
         {
@@ -112,13 +117,15 @@
     }
 
 
-    //ZIP - zipcode                                                                                              
-    //return - returns ZIP number/zone                                                               
-    //Defining the function that finds the distance
-    //Finds the starting zipcode and ending zipcode and then determines the zone
-    //Returns the distance between them classified as a zone 1 through 6
-    //setting ZIP equal to the integer that the user inputs for the zipcodes   
-    function finddistance(zip)                                                                           
+    function find_distance(zip)   
+
+    /*ZIP - zipcode                                                                                              
+    return - returns ZIP number/zone                                                               
+    Defining the function that finds the distance
+    Finds the starting zipcode and ending zipcode and then determines the zone
+    Returns the distance between them classified as a zone 1 through 6
+    setting ZIP equal to the integer that the user inputs for the zipcodes*/ 
+
     {
         if (zip >= 1 && zip <= 6999) 
         { 
@@ -162,9 +169,9 @@
    }       
  
 
-    function findcost(distance, mailtype)
+    function find_cost(distance, mailtype)
     {
-        //Defining the function findcost that finds the price
+        //Defining the function find_cost that finds the price
         //Uses Post classification and distance to calculate the price
         //Returns the cost of the mail
         //price_per_zone - the total cost of shipment
