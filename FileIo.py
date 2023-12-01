@@ -1,31 +1,16 @@
-#1. Count some criteria In the database ex) Total Senior
-#2. Make decisions using data In the database ex) Total Boys vs Girls
-#3. Make simple selections In the database
-#4. Make complex selections from the data using several criteria ex) Total By Zip Code
-#5. Make selections from the database using user input values ex) Ask User
-#6. Include “no match” results ex) “Not Found”
-#7. Add new data records to the database Append Student to File
-#8. Permit the user to enter the filename
-#9. List students by firstname, lastname sorted by last name.
-#9a. Write any given output to a file as a “CSV”
-#9b. Program repeats
-#10. Use functions to organize the program
-#10a. Create Menu to execute functions
-#11. Update and change information in fields in records of the database
-#12. Delete records from database
-#13. Create web page with outputs Python Program will generate HTML
-#14. Create graphs with data
-
-
-
-
+# Author: Liam Hugo Kennon
+# Date: 12/1/23
+# Description: Controls data within a file
+# Challenges: N/A
+# Bugs: N/A
+# None
 
 def main():
    
     """ doc """
-    file_input = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")
+    file_input = open("C:/Users/lkennon26/Desktop/gcds_data3.csv") #gives a file to read
 
-    file_input.readline()                       #skip first line of header info
+    file_input.readline()                                          #skip first line of header info
     answer = "Y"
     go = True
 
@@ -68,9 +53,10 @@ def main():
 
 
 def check_seniors(file):
-    #Description
-    #take in
-    #return    """ doc """
+    #Finds amount of students in 12th grade
+    #takes in the the number choice from the user
+    #returns all the seniors     
+    """ doc """
     file.seek(1)                                     #move pointer to line 1
 
     for record in file:
@@ -79,7 +65,7 @@ def check_seniors(file):
             print(attribute[0] + " " + attribute[1])
 
 def male_female(file, type_of_gender):
-    #Counts number of males and females and gives the percentage
+    #counts number of males and females and gives the percentage
     #takes in number of males and females
     #returns the percentage of the two
     """ doc """
@@ -98,7 +84,7 @@ def male_female(file, type_of_gender):
   
 
 def check_state(file):
-    #Finds number of people living in CT
+    #finds number of people living in CT
     #takes in the state attribute 
     #returns number of people in the state
     """ doc """
@@ -111,7 +97,7 @@ def check_state(file):
             print(attribute[0] + " " + attribute[1]) 
 
 def find_person(file):
-    #Finds a specific file in the file
+    #finds a specific file in the file
     #takes in first and last names 
     #returns the complete file
     """ doc """
@@ -129,7 +115,7 @@ def find_person(file):
             print(attribute[0] + " ," + attribute[1] + " ," + attribute[2] + " ," + attribute[3] + " ," + attribute[4] + " ," + attribute[5] + " ," + attribute[6]) 
 
 def count_first(file):
-    #Counts the number of people with the same first name and says how many of those first names exist
+    #counts the number of people with the same first name and says how many of those first names exist
     #takes in a first name
     #returns amount of the number of people with the name and the name
     """ doc """
@@ -164,12 +150,12 @@ def add_person(file):
     add_city = input ("enter student city")
     add_state = input ("enter student state")
     
-    file.close()
-    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv", "a")
-    file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state))
-    file.write("\n")
-    file.close()
-    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")
+    file.close()                                                                                                                                   #close the file
+    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv", "a")                                                                                  #open the file
+    file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state)) #taking user data and compartmentalizing it
+    file.write("\n")                                                                                                                               #open as an append file
+    file.close()                                                                                                                                   #close the file 
+    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")                                                                                       #open as a read file
 
 
        
