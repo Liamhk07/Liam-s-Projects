@@ -29,6 +29,9 @@ def main():
     answer = "Y"
     go = True
 
+    #Choice board(what do you want to do?)
+
+
     print("Menu: Enter Choice or 'Q' to (Q)uit:")
     print("1) Print All Student in Grade 12")
     print("2) Compare number of males to females")
@@ -40,6 +43,8 @@ def main():
 
 
     while go is True:
+
+        #Main function
 
         if answer == "1":
             check_seniors(file_input)
@@ -63,7 +68,9 @@ def main():
 
 
 def check_seniors(file):
-    """ doc """
+    #Description
+    #take in
+    #return    """ doc """
     file.seek(1)                                     #move pointer to line 1
 
     for record in file:
@@ -72,6 +79,9 @@ def check_seniors(file):
             print(attribute[0] + " " + attribute[1])
 
 def male_female(file, type_of_gender):
+    #Counts number of males and females and gives the percentage
+    #takes in number of males and females
+    #returns the percentage of the two
     """ doc """
     file.seek(1)                                     
     count_1 = 0
@@ -88,6 +98,9 @@ def male_female(file, type_of_gender):
   
 
 def check_state(file):
+    #Finds number of people living in CT
+    #takes in the state attribute 
+    #returns number of people in the state
     """ doc """
     file.seek(1) 
     for record in file:
@@ -98,6 +111,9 @@ def check_state(file):
             print(attribute[0] + " " + attribute[1]) 
 
 def find_person(file):
+    #Finds a specific file in the file
+    #takes in first and last names 
+    #returns the complete file
     """ doc """
     file.seek(1) 
 
@@ -113,6 +129,9 @@ def find_person(file):
             print(attribute[0] + " ," + attribute[1] + " ," + attribute[2] + " ," + attribute[3] + " ," + attribute[4] + " ," + attribute[5] + " ," + attribute[6]) 
 
 def count_first(file):
+    #Counts the number of people with the same first name and says how many of those first names exist
+    #takes in a first name
+    #returns amount of the number of people with the name and the name
     """ doc """
     first_name = input("enter first name")
     counter = 0
@@ -130,6 +149,9 @@ def count_first(file):
         
 
 def add_person(file):
+    #adds a record to the file
+    #takes in the attributes in each indivdual column
+    #returns a new record added to the file
     """ doc """
     for record in file:
         attribute = record.split(",")   
@@ -142,8 +164,13 @@ def add_person(file):
     add_city = input ("enter student city")
     add_state = input ("enter student state")
     
+    file.close()
     file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv", "a")
-    file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state + "\n"))
+    file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state))
+    file.write("\n")
+    file.close()
+    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")
+
 
        
 
