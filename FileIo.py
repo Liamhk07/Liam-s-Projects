@@ -1,6 +1,6 @@
-# Author: Liam Hugo Kennon
+# Author: Liam Kennon
 # Date: 12/1/23
-# Description: Controls data within a file
+# Description: Controls data within a file(control Fx function)
 # Challenges: N/A
 # Bugs: N/A
 # None
@@ -17,13 +17,14 @@ def main():
     #Choice board(what do you want to do?)
 
 
-    print("Menu: Enter Choice or 'Q' to (Q)uit:")
-    print("1) Print All Student in Grade 12")
-    print("2) Compare number of males to females")
-    print("3) Print all students living in CT")
-    print("4) Print specific student")
-    print("5) Print number of the same first names")
-    print("6) Add new record")
+    print("""Menu: Enter Choice or 'Q' to (Q)uit:")
+    1) Print All Student in Grade 12")
+    2) Compare number of males to females")
+    3) Print all students living in CT")
+    4) Print specific student")
+    5) Print number of the same first names")
+    6) Add new record")
+    7) how many kids from each family goes to GCDS""")
 
 
 
@@ -43,7 +44,9 @@ def main():
         elif answer == "5":
             count_first(file_input) 
         elif answer == "6":
-            add_person(file_input)   
+            add_person(file_input)  
+        elif answer == "7":
+            count_families(file_input)  
         elif answer == "Q":
             go = False
             print("bye")
@@ -155,10 +158,25 @@ def add_person(file):
     file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state)) #taking user data and compartmentalizing it
     file.write("\n")                                                                                                                               #open as an append file
     file.close()                                                                                                                                   #close the file 
-    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")                                                                                       #open as a read file
+    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv")   
+    
+def count_families(file):
+    """ doc """
 
+    name_last = input ("enter last name")
+    #Finds the number of people with the same last name 
+    #takes in a last name
+    #returns number of people with last name
+    try:
+        for record in file:
+            attribute = record.split(",")   
+            if attribute[0] == name_last:
+                name_counter += 1
+    except name_last != attribute[0] or name_last.isdigit() == True:
+        print("Person not found")
 
+ 
        
 
-if __name__ == '__main__':
-    main()
+    if __name__ == '__main__':
+        main()
