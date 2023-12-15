@@ -5,10 +5,16 @@
 # Bugs: N/A
 # None
 
+from pathlib import Path
+
+
 def main():
    
+    current_dir = Path(__file__).parent
+    file_path = current_dir / "gcds_data3.csv"
+
     """ doc """
-    file_input = open("C:/Users/lkennon26/Desktop/gcds_data3.csv") #gives a file to read
+    file_input = open(file_path) #gives a file to read
 
     file_input.readline()                                          #skip first line of header info
     answer = "Y"
@@ -44,7 +50,7 @@ def main():
         elif answer == "5":
             count_first(file_input) 
         elif answer == "6":
-            add_person(file_input)  
+            add_person(file_input,file_path)  
         elif answer == "7":
             count_families(file_input)  
         elif answer == "Q":
@@ -137,7 +143,7 @@ def count_first(file):
         print(f"{counter}, {first_name}s")
         
 
-def add_person(file):
+def add_person(file, file_path):
     #adds a record to the file
     #takes in the attributes in each indivdual column
     #returns a new record added to the file
@@ -154,7 +160,7 @@ def add_person(file):
     add_state = input ("enter student state")
     
     file.close()                                                                                                                                   #close the file
-    file = open("C:/Users/lkennon26/Desktop/gcds_data3.csv", "a")                                                                                  #open the file
+    file = open(file_path, "a")                                                                                  #open the file
     file.write((add_last_name + "," + add_first_name + "," + add_grade + "," + add_gender + "," + add_address + "," + add_city + "," + add_state)) #taking user data and compartmentalizing it
     file.write("\n")                                                                                                                               #open as an append file
     file.close()                                                                                                                                   #close the file 
