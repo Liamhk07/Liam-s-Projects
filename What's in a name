@@ -1,0 +1,165 @@
+def main():
+      
+    name = input("enter name: ")
+    count = 0
+    
+    print("""Menu: Enter Choice or 'Q' to (Q)uit:")
+    1) vowel counter"
+    2) consonant frequency"
+    3) first name
+    4) last name
+    5) middle name
+    6) Hyphen
+    7) Lower
+    8) Upper""")
+ 
+
+    go = True
+    answer = "Y"
+    while go is True:
+
+        #Main function
+        answer = input("What do you want to do?")
+
+
+        if answer == "1":
+            count = vowel_counter(name)
+            print (count)
+        elif answer == "2":
+            count = consonant_frequency(name)
+        elif answer == "3": 
+            count = return_firstname(name)
+        elif answer == "4":
+            count = last_name(name)
+        elif answer == "5":
+            count = middle_name(name)
+        elif answer == "6":
+             count = hyphen(name)
+        elif answer == "7":
+             count = lower_name(name)
+             print(count)
+        elif answer == "8":
+            count = upper_name(name)
+            print(count)
+        elif answer == "9":
+             count = shuffle_name(name)
+             print(count)
+
+
+
+def vowel_counter(name):
+    vowels = ['a', 'e,', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    count = 0
+    for letter in name:
+        if letter in vowels:
+            count += 1
+
+    return (count)
+
+def consonant_frequency(name):
+    consonants = ["B" , "b", "C", "c", "D", "d", "F", "f", "G", "g", "H", "h", "J", "j", "K", "k", "L", "l",
+                "M", "m", "N", "n", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
+        
+
+    consonant_count = 0
+
+    for letter in name:
+                if letter in consonants:
+                    consonant_count += 1
+
+
+    print(f"There are {consonant_count} consonants in {name}")
+
+def return_firstname(name):
+
+  first_name = ""
+
+  for letter in name:
+        if letter != " ":
+            first_name += letter
+        else:
+            break
+  print(first_name)
+
+def reversed(name):
+     
+    data = ""
+
+    for letter in name[::-1]:
+            if letter != " ":
+                data += letter
+            else:   
+                break
+    return data
+
+def last_name(name):
+    
+    name_last = ""
+
+    for letter in name[::-1]:
+            if letter != " ":
+                name_last += letter
+            else:   
+                break
+    print(reversed(name_last))
+
+def middle_name(name):
+   
+    name_middle = ""
+    first_space = name.index(" ")
+    last_space = name.rindex(" ")
+    if first_space != last_space:
+        name_middle = name[first_space:last_space].strip()
+    print(name_middle)     
+
+def hyphen(name):
+     
+    hyphen_count = 0
+
+    for letter in name:
+          if letter == "-":
+               hyphen_count += 1
+
+    if hyphen_count >= 1:
+          print("Hyphen")
+    else:
+         print("No Hyphen")
+     
+def lower_name(string):
+     
+     lower_letters = ""
+
+     for char in string:
+        if 90 >= ord(char) >= 65:
+               lower_letters += chr(ord(char) + 32)
+        else:
+             lower_letters += char
+     return lower_letters
+
+def upper_name(string):
+     
+    upper_letters = ""
+
+    for char in string:
+        if 122 >= ord(char) >= 97:
+               upper_letters += chr(ord(char) - 32)
+        else:
+             upper_letters += char
+    return upper_letters
+
+def shuffle_name(name):
+     
+     shuffled_name = ""
+
+     
+    
+         
+    
+    
+    
+    
+
+     
+
+if __name__ == '__main__':
+            main()
