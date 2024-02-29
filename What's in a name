@@ -1,8 +1,18 @@
+# Author: Liam Kennon
+# Date: 2/28/24
+# Description: Manipulates various names
+# Challenges: N/A
+# Bugs: N/A
+# Tester: Chase Richards
+# None
+
+from random import shuffle
+
 def main():
       
     name = input("enter name: ")
     count = 0
-    
+#Choiceboard for user    
     print("""Menu: Enter Choice or 'Q' to (Q)uit:")
     1) vowel counter"
     2) consonant frequency"
@@ -11,7 +21,11 @@ def main():
     5) middle name
     6) Hyphen
     7) Lower
-    8) Upper""")
+    8) Upper
+    9) Shuffle Name
+    10) Initials
+    11) reverse name
+    12) Palindrome""")
  
 
     go = True
@@ -44,9 +58,18 @@ def main():
         elif answer == "9":
              count = shuffle_name(name)
              print(count)
+        elif answer == "10":
+             count = get_initials(name)
+        elif answer == "11":
+             name = reverse_name(name)
+             print(name)
+        elif answer == "12":
+             name = get_palindrome(name)
 
 
-
+#counts number of vowels in a name
+#takes in name
+#returns number of vowels          
 def vowel_counter(name):
     vowels = ['a', 'e,', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
     count = 0
@@ -55,7 +78,9 @@ def vowel_counter(name):
             count += 1
 
     return (count)
-
+#counts number of vowels in a name
+#takes in name
+#returns number of consanants
 def consonant_frequency(name):
     consonants = ["B" , "b", "C", "c", "D", "d", "F", "f", "G", "g", "H", "h", "J", "j", "K", "k", "L", "l",
                 "M", "m", "N", "n", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"]
@@ -69,7 +94,9 @@ def consonant_frequency(name):
 
 
     print(f"There are {consonant_count} consonants in {name}")
-
+#retruns first name
+#takes in fullname
+#returns first name
 def return_firstname(name):
 
   first_name = ""
@@ -80,7 +107,9 @@ def return_firstname(name):
         else:
             break
   print(first_name)
-
+#reverses the name
+#takes in name
+#returns reversed name
 def reversed(name):
      
     data = ""
@@ -91,7 +120,9 @@ def reversed(name):
             else:   
                 break
     return data
-
+#returns the last name
+#takes in the fullname
+#returns the last name
 def last_name(name):
     
     name_last = ""
@@ -102,7 +133,9 @@ def last_name(name):
             else:   
                 break
     print(reversed(name_last))
-
+#returns the middlename
+#takes in the fullname
+#returns the middle name
 def middle_name(name):
    
     name_middle = ""
@@ -111,7 +144,9 @@ def middle_name(name):
     if first_space != last_space:
         name_middle = name[first_space:last_space].strip()
     print(name_middle)     
-
+#checks for hyphens
+#takes in the fullname
+#returns whether there is a hyphen or not
 def hyphen(name):
      
     hyphen_count = 0
@@ -124,7 +159,9 @@ def hyphen(name):
           print("Hyphen")
     else:
          print("No Hyphen")
-     
+#converts the name to lowercase
+#takes in the fullname
+#retruns the name in all lowercase     
 def lower_name(string):
      
      lower_letters = ""
@@ -135,7 +172,9 @@ def lower_name(string):
         else:
              lower_letters += char
      return lower_letters
-
+#converts the name to uppercase
+#takes in the fullname
+#returns the name in all uppercase
 def upper_name(string):
      
     upper_letters = ""
@@ -146,20 +185,44 @@ def upper_name(string):
         else:
              upper_letters += char
     return upper_letters
-
+#shuffles the name randomly
+#takes in the fullname
+#returns a random order of the letters
 def shuffle_name(name):
      
-     shuffled_name = ""
+     name = list(name)
+     shuffle(name)
+     return "".join(name)
+#gets the initials from the fullname
+#takes in the fullname
+#returns the initials of the fullname
+def get_initials(name):
 
-     
-    
-         
-    
-    
-    
-    
+    get_init = name.split(" ")
 
+    if get_init == name.split(" "):
+        i_one = get_init[0][0]
+        i_two = get_init[1][0]
+        i_three = get_init[2][0]
+        initials = i_one + i_two + i_three
+        print(initials)
+#reverses the name
+#takes in the fullname
+#returns the name reversed
+def reverse_name(name):
      
+    name = name[::-1]
+    print(name)
+#checks for a palindrome
+#takes in the fullname
+#returns if the name is a palindrome 
+def get_palindrome(name):
+     
+    if name == (reversed(name))[::-1]:
+          print("true")
+    else:
+         print("false")
+               
 
 if __name__ == '__main__':
             main()
