@@ -1,0 +1,62 @@
+# Author: Liam Kennon
+# Date: 3/31/24
+# Description: 
+# Challenges: N/A
+# Bugs: N/A
+# Sources: w3schools, Google
+
+fname = ((r"C:\Users\lkennon26\Downloads\macbeth.txt"))
+
+from pathlib import Path
+
+useless_words = ["the", "then", "and", "i", "a", "that", "in", "come", "or", "why", "every", "my", "with", "you", "his", "at", "by", "these", "so", "which", "to", "of", "is", "not", "be", "your", "it", "have", "for", "but", "our", "he", "thus", "as", "what", "we", "all", "are", "me", "this", "do"]
+
+macbeth = dict()
+
+try:
+    fhand = open(fname)
+except:
+    print('File cannot be opened:', fname)
+    exit()
+
+counts = dict()
+for line in fhand:
+    words = line.split()
+    for word in words:
+        word = word.lower().strip()
+        if word in useless_words:
+            continue
+        if word not in counts:
+            counts[word] = 1
+        else:
+            counts[word] += 1
+
+macbeth = dict(sorted(counts.items(), key = lambda x:x[1], reverse = True))
+print(macbeth)
+
+import plotly.graph_objects as go
+
+V = []
+K = []
+
+lables = list(counts.keys())
+values = list(counts.values())
+
+for key,value in macbeth.items():
+    
+    if value > 65:
+        V.append(value)
+        K.append(key)
+        
+print(V)
+print(K)
+
+
+# Create a pie chart
+fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+
+# Set the chart title
+fig.update_layout(title='Name frequency')
+
+# Show the chart
+fig.show()
