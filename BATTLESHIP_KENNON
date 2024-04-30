@@ -1,80 +1,93 @@
+# Author: Liam Kennon
+# Date: 4/17/24
+# Description: Simplified Battleship game 
+# Challenges: N/A
+# Bugs: N/A
+# Sources: w3schools, Google, stackexchange, python.org
+# Testers: Zach Bostock, Asher Rosen
+
 import random
 
-
+#Makes battleships
 def create_ship():
     return random.randint(0, 5), random.randint(0, 5)
 
-
+#Play again option
 def play_again():
-    try_again = input("Wanna play again? (Y)es or (N)o? >: ").lower()
-    if try_again == "y":
+    try_again = input("Play again? yes or no? >: ").lower()
+    if try_again == "yes":
         play_game()
+    elif try_again == "no":
+        print("Goodbye")
+        return
     else:
-        print("Goodbye!")
+        print("Error, That was not an option")
         return
 
-
+#Welcoming statement to user
 print("Welcome to Battleship"
       "\nDestroy all the hidden ships on map!\n")
-
+#Instructions for user
 print("""\nIntroductions:
-\nYou have 10 ammo and there are 3 hidden ships on map.
+\nYou have 10 ammo and there are 4 hidden ships on map.
 \n""")
 
-
+#Creates game board
+#Returns a game board for the player
+#5 by 5 Battleship game board
 def play_game():
-    game_board = [["O", "O", "O", "O", "O"],
+    battle_board = [["O", "O", "O", "O", "O"],
                   ["O", "O", "O", "O", "O"],
                   ["O", "O", "O", "O", "O"],
                   ["O", "O", "O", "O", "O"],
                   ["O", "O", "O", "O", "O"]]
 
-    for i in game_board:
+    for i in battle_board:
         print(*i)
-
+#Calling creat_ship function to create four ships
     ship1 = create_ship()
     ship2 = create_ship()
     ship3 = create_ship()
     ship4 = create_ship()
 
 
-    ships_left = 1
-    ammo = 10
-
+    ships_left = 4          #Sets number of ships
+    ammo = 10               #Ammunition for user
+                            #While the user still has ammunition
     while ammo:
         try:
             row = int(input("Enter a row number between 1-5"))
             column = int(input("Enter a column number between 1-5"))
         except ValueError:
-            print("Only enter number!")
+            print("You can only do numbers")
             continue
 
         if row not in range(1,6) or column not in range(1, 6):
             print("\nThe numbers have to be between 1-5")
             continue
 
-        row = row - 1 
-        column = column - 1 
+        row = row - 1
+        column = column - 1
 
-        if game_board[row][column] == "-" or game_board[row][column] == "X":
+        if battle_board[row][column] == "M" or battle_board[row][column] == "H":
             print("\nYou have already shot at that point\n")
             continue
         elif (row, column) == ship1 or (row, column) == ship2 or (row, column) == ship3 or (row, column) == ship4:
-            print("\nYou hit a ship\n")
-            game_board[row][column] = "X"
+            print("hit")
+            battle_board[row][column] = "H"
             ships_left -= 1
             if ships_left == 0:
                 print("Victory")
                 play_again()
         else:
-            print("\nYou missed!\n")
-            game_board[row][column] = "-"
+            print("miss")
+            battle_board[row][column] = "M"
             ammo -= 1
 
-        for i in game_board:
+        for i in battle_board:
             print(*i)
 
-        print(f"Ammo left: {ammo} | Ships left: {ships_left}")
+        print(f"Ammo left:{ammo}, Ships left:{ships_left}")
 
     play_again()
 
