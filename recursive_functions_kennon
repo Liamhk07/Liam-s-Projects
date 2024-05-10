@@ -1,0 +1,129 @@
+# Author: Liam Kennon
+# Date: 5/10/24
+# Description: Various recursive function
+# Challenges: N/A
+# Bugs: N/A
+# Sources: Course website
+
+def main():
+#Choice board/Main Function
+#What the user wants to do
+#Sends user to function of his/her choice
+
+    while True:
+         
+        print("""Menu: Enter Choice or 'Q' to (Q)uit:")
+        1) factorial")
+        2) summation")
+        3) powers")
+        4) sum of the digits")
+        5) fibonacci equation")
+        6) product of digits")
+        7) product of two numbers
+        8) Sum of the range
+        9) Reverse""")
+
+        n = int(input("Enter a number: "))
+        answer = input("Enter Choice or 'Q' to quit")
+        if answer == "1":
+                print(factorial(n))
+        elif answer == "2":
+                print(summation(n))
+        elif answer == "3": 
+                a = int(input("Choose a number as exponent: "))
+                print(powers(a, n))
+        elif answer == "4":
+                print(sum_digits(n))
+        elif answer == "5":
+                print(fibonacci(n)) 
+        elif answer == "6":
+                print(product_of_digits(n))
+        elif answer == "7":
+                print(product_of_two(n))
+        elif answer == "8":
+                print(sum_range(n))
+        elif answer == "9":
+                print(reverse(n))                  
+        else:
+                print("This was not an option!")
+                
+
+
+
+
+def factorial(n):
+    # Number from user
+    # Executes the factorial formula on n
+    # Number after being processed by function
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def summation(n):
+     # Number from user
+     # Executes the summation formula on n
+     # Number after being processed by function
+     if n == 0:
+        return 1
+     else:
+        return n + summation(n-1)
+def powers(a, n):
+     # Number from user and the numbers power
+     # Executes the powers formula on n
+     # Number after being processed by function
+     if n == 0:
+        return 1
+     else:
+        return a * powers(a,n-1)
+def sum_digits(n):
+     # Number from user plus another number from user
+     # Executes the sum of digits formula on n
+     # Number after being processed by function
+     if n == 0:
+        return 1
+     else:
+         n % 10 + sum_digits(n / 10)
+def fibonacci(n):
+     # Number from user
+     # Executes the fibonacci formula on n
+     # Number after being processed by function
+     if n == 0:
+        return 1
+     elif n == 1:
+        return 1
+     else:
+        return fibonacci(n-1) + fibonacci(n-2)
+def product_of_digits(n):
+     # Number from user
+     # Executes the product of digits formula on n
+     # Number after being processed by function
+     if n < 10:
+        return n
+     else:
+        return (n % 10) * product_of_digits(n//10)
+def product_of_two(n, b):
+    # Number from user plus the second number from the user
+    # Executes the product of two numbers formula on n
+    # Number after being processed by function
+    if b > 0:
+        return n + product_of_two(n,b-1)
+    else: 
+        return 0 
+def sum_range(start, end):
+    # Number from user
+    # Executes the sum of the range formula on n
+    # Number after being processed by function
+    if start > end:
+        return 0
+    else:
+        return start + sum_range(start + 1, end)
+
+def reverse(n):
+    # Number from user
+    # Executes the reverse formula on n
+    # Number after being processed by function
+    return int(str(n)[::-1])
+
+if __name__ == '__main__':
+        main()
